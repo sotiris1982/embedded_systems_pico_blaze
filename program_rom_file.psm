@@ -21,8 +21,8 @@ JUMP loop
 
 isr:
 LOAD s0, 00 ;counter
-LOAD s5, 00 ; kataxoritis gia LSB
-LOAD s6, 00 ; kataxoritis gia MSB
+LOAD s5, 00 ; register for LSB
+LOAD s6, 00 ; register for MSB
 ;LOAD s7, 255'd
 
 nestloop:
@@ -41,7 +41,7 @@ nestloop:
 nestloop_end:
 	
 	
-SR0 s6				;taken from picoblaze manual page68 
+SR0 s6				;taken from picoblaze manual page 68 
 SRA s5				;it seems that the manual has some faults 
 SR0 s6
 SRA s5
