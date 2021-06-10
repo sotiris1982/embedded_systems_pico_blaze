@@ -5,14 +5,14 @@ module top(
 	clk_rstn_if interf
 	);
 	
-// eswterika simata
-logic data_av_sync; // eswteriko sima toy sync module
+// internal signals
+logic data_av_sync; // internal signals of sync module
 
-// eswterika simata median
+// internal signals median
 logic [15:0] median_o;
 logic control_o_m;
 
-// eswterika simata fsm_wr 
+// internal signals fsm_wr 
 logic [15:0] wr_data;
 logic control_o_wr;
 logic [2:0] addr_wr;
@@ -20,7 +20,7 @@ logic control_rd;
 logic control_i;
 logic median_i;
 
-// eswterika simata fsm_rd
+// internal signals fsm_rd
 logic [2:0] addr_rd;
 //logic [31:0] avg;
 logic [15:0] rd_data;
