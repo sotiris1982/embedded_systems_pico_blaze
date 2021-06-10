@@ -1,0 +1,60 @@
+; CONSTANT DIRECTIVE
+; ------------------
+CONSTANT in_porta, 01
+CONSTANT in_portb, 02
+CONSTANT in_portc, 04
+CONSTANT in_portd, 08
+CONSTANT out_portw, 01
+CONSTANT out_portx, 02
+CONSTANT out_porty, 04
+CONSTANT out_portz, 08
+CONSTANT out_portk0, 01
+CONSTANT out_portk1, 02          
+
+; MAIN CODE
+; ------------------
+ADDRESS 000
+ENABLE INTERRUPT
+loop:
+LOAD s4, 03
+JUMP loop
+
+isr:
+LOAD s0, 00 ;counter
+LOAD s5, 00 ; kataxoritis gia LSB
+LOAD s6, 00 ; kataxoritis gia MSB
+;LOAD s7, 255'd
+
+nestloop:
+	
+	COMPARE s0, 08
+	JUMP NC, nestloop_end
+	OUTPUT  s0, out_portw
+	LOAD    s3, 00
+	ADD 	s0 , 01
+	INPUT 	s1 , in_porta
+	ADD 	s5, s1
+	ADDCY   s6 , 00	
+	;OUTPUT  s5, out_portx
+	;OUTPUT  s6, out_porty	
+	JUMP nestloop
+nestloop_end:
+	
+	
+SR0 s6				;taken from picoblaze manual page68 
+SRA s5				;it seems that the manual has some faults 
+SR0 s6
+SRA s5
+SR0 s6
+SRA s5
+
+OUTPUT  s5, out_portx
+OUTPUT s6, out_porty
+RETURNI ENABLE
+
+ADDRESS 3FF
+JUMP isr
+;
+;Only comments or CONSTANT directives can be specified after the last memory location.
+;End of file
+;
