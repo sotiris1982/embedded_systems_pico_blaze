@@ -63,12 +63,12 @@ fsm_wr fsm_wr_inst(
 
 
 blk_mem_gen_0 blk_mem_inst(
-.addra           (addr_wr), // apo tin fsm_wr
+	.addra           (addr_wr), // signal coming from fsm_wr
 .clka            (interf.clk_i),
 .dina            (wr_data),
 .wea             (control_o_wr),
 .doutb           (rd_data),
-.addrb           (addr_from_pico_o [2:0]),// erxete apo tin fsm_rd
+.addrb           (addr_from_pico_o [2:0]),// signal coming from fsm_rd
 .clkb            (interf.clk_i)
 );
 
